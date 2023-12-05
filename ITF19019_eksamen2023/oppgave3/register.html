@@ -48,6 +48,7 @@
                 <p>
                     <label for="email">Email address</label><input type="email" name="email" id="email" placeholder="you@email.com" /></select>
                 </p>
+                <!-- Lagt til onClick -->
                 <button id="saveStaff" onclick="newStaff()">Save staff member</button>
             </div>
             <div class="form">
@@ -88,7 +89,7 @@
                 let html = document.createElement("article")
                 html.classList.add("membercard")
                 html.setAttribute("id", "staffmember-" + index)
-                html.innerHTML = "<h3>" + staffMember.firstname + " " + staffMember.lastname + "</h3>" 
+                html.innerHTML = "<h3>" + staffMember.lastname + ", " + staffMember.firstname + "</h3>" 
                 html.innerHTML += "<p class = metainfo>"
                 html.innerHTML += " <img src='posicon.png' alt='position: '> " + staffMember.position
                 html.innerHTML += " <img src='depicon.png' alt='department: '> " + staffMember.department
@@ -97,6 +98,11 @@
                 staffList.appendChild(html)
             })}
             printStaff()
+            /* Kommentar: I denne funksjonen skriver ut ansattlisten på nettsiden ut ved å bruke informasjonen i html-koden.
+                          Vi henter elementet med ID "staffList" og lagrer det i en variabel. Deretter tømmes innholdet i elementet.
+                          Deretter brukes map til å gå gjennom alle elementene i arrayet "staff". For hvert element i arrayet, lages det et nytt html-element. 
+                          Til slutt settes innerHTML til article-elementet med informasjonen om ansattmedlemmet
+            */
 
             function newStaff() {
                 const idsToFetch = ["firstname", "lastname", "position", "department", "email"]
@@ -118,6 +124,11 @@
                     printStaff()
                 }
             }
+            /* Kommentar: I denne funksjonen lages en variabel som heter "idsToFetch" som inneholder en array med id-ene 
+                          til input-feltene som det skal hentes verdier fra. 
+                          Dersom alle input-feltene ikke er fylt ut, settes 'goAhead' til 'false'. 
+                          Dersom 'goAhead' er 'true', legges en ny ansatt i arrayet ('staff').
+                          */
 
             function printArray(array, id) {
                 let menu = document.getElementById(id)
@@ -128,9 +139,11 @@
                     menu.appendChild(html)
                 })
             }
+            // Kommentar: I denne funksjonen tar inn et array og en id. Deretter lager den en variabel som henter ut elementet med den gitte id-en.
 
             printArray(positions, "position")
             printArray(departments, "department")
+            // Kommentar: kaller på funksjonen for å skrive ut "positions" og "departments" i menyene med id-ene "position" og "department"
 
     </script>
 </body>
