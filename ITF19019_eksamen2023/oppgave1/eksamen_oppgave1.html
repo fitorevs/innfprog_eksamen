@@ -90,7 +90,8 @@
             console.log(memoryPieces)
             handleButtons()
         }
-
+        /* Kommentar: Denne funksjonen legger den gjeldene kalkulasjonsverdien i et minnearray,
+                      oppdaterer minnelokasjone og viser denne informasjonen på brukergrensesnittet. */
         // C-krav:
         function handleMemory(direction) {
             const totalMemory = memoryPieces.length - 1
@@ -104,6 +105,8 @@
             document.getElementById("calculation").value = memoryPieces[memoryLocation]
             handleButtons()
         }
+        /* Kommentar: Denne funksjonen håndterer navigasjonen gjennom minnet i kalkulatoren basert på angitt retning
+                      ("next" for neste og "previous" for forrige). */
 
         // A & B-krav:
         function handleButtons() {
@@ -121,7 +124,10 @@
                 previous.disabled = true
             }
         }
-        
+        /* Kommentar: Denne funksjonen håndterer knappene for å bla gjennom minnet i kalkulatoren. 
+                      Dersom det er mulig å bla til neste eller forrige element i minnet, blir knappene aktivert. 
+                      Dersom det ikke er mulig å bla til neste eller forrige element i minnet, blir knappene deaktivert. */
+
     </script>
 </body>
 </html>
