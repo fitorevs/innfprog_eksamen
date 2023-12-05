@@ -48,7 +48,7 @@
                 <p>
                     <label for="email">Email address</label><input type="email" name="email" id="email" placeholder="you@email.com" /></select>
                 </p>
-                <button id="saveStaff">Save staff member</button>
+                <button id="saveStaff" onclick="newStaff()">Save staff member</button>
             </div>
             <div class="form">
                 <h2>Add position</h2>
@@ -68,15 +68,70 @@
     </main>
     <script>
         //Array of staff objects
-        const staff = [
+        let staff = [
             {firstname: "Bill", lastname: "Gates", position: "Director", department: "Administration", email: "bill@gates.net"},
+            {firstname: "Armando", lastname: "Murillo", position: "Designer", department: "Production", email: "armando@allthings.net"},
+            {firstname: "Howe-Lukic", lastname: "Brigitte", position: "Designer", department: "Human Resources", email: "armando@allthings.net"}
         ]
 
         //Array of available positions
-        const positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"]
+        let positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"]
 
         //Array of available departments
-        const departments = ["Administration", "Human Resources", "Production", "Finances"]
+        let departments = ["Administration", "Human Resources", "Production", "Finances"]
+
+        // E-krav:
+        function printStaff() {
+            let staffList = document.getElementById("staffList")
+            staffList.textContent = ""
+            staff.map((staffMember, index) => {
+                let html = document.createElement("article")
+                html.classList.add("membercard")
+                html.setAttribute("id", "staffmember-" + index)
+                html.innerHTML = "<h3>" + staffMember.firstname + " " + staffMember.lastname + "</h3>" 
+                html.innerHTML += "<p class = metainfo>"
+                html.innerHTML += " <img src='posicon.png' alt='position: '> " + staffMember.position
+                html.innerHTML += " <img src='depicon.png' alt='department: '> " + staffMember.department
+                html.innerHTML += "</p><p><a href='mailto:"+ staffMember.email +"'><img src='mailicon.png'> Send mail to "+ staffMember.firstname +"</a></p>"
+                console.log(html)
+                staffList.appendChild(html)
+            })}
+            printStaff()
+
+            function newStaff() {
+                const idsToFetch = ["firstname", "lastname", "position", "department", "email"]
+                let goAhead = true
+                idsToFetch.map(id => {
+                    let value = document.getElementById(id).value
+                    if (value === "" && goAhead === true) {
+                        goAhead = false
+                    } 
+                })
+                if (goAhead) {
+                    staff.push({})
+                    const index = staff.length - 1
+                    idsToFetch.map(id => {
+                        let value = document.getElementById(id).value
+                        console.log(value)
+                        staff[index][id] = value
+                    })
+                    printStaff()
+                }
+            }
+
+            function printArray(array, id) {
+                let menu = document.getElementById(id)
+                menu.textContent = ""
+                array.map(element => {
+                    let html = document.createElement("option")
+                    html.appendChild(document.createTextNode(element))
+                    menu.appendChild(html)
+                })
+            }
+
+            printArray(positions, "position")
+            printArray(departments, "department")
+
     </script>
 </body>
 </html>
