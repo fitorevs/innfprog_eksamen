@@ -37,12 +37,16 @@
         <div id="memory">
             <p>Memory (<span id="memory-bank">0</span>)</p>
             <button id="memory-add" onclick="addMemory()">Add</button>
-            <button id="memory-browseback" disabled>Previous</button>
-            <button id="memory-browseforward" disabled>Next</button>
+            <button id="memory-browseback" onClick = "handleMemory('previous')" disabled>Previous</button>
+            <button id="memory-browseforward" onClick = "handleMemory('next')" disabled>Next</button>
         </div>
     </article>
 
     <script>
+        // D-krav:
+        let memoryLocation = 0
+        let memoryPieces = []
+
         //Rettet: displey -> display
         function display(val) {
             //Rettet: getElementByID -> getElementById
@@ -81,17 +85,43 @@
         function addMemory() {
             let calculation = document.getElementById("calculation").value
             memoryPieces.push(calculation)
-            memoryBank++
-            document.getElementById("memory-bank").textContent = memoryBank
+            memoryLocation = memoryPieces.length
+            document.getElementById("memory-bank").textContent = memoryLocation
             console.log(memoryPieces)
+            handleButtons()
         }
 
         // C-krav:
+        function handleMemory(direction) {
+            const totalMemory = memoryPieces.length - 1
+            if (direction === "next" && memoryLocation < totalMemory) {
+                memoryLocation++
+                console.log(memoryLocation)
+            } else if (direction === "previous" && memoryLocation > 0) {
+                memoryLocation--
+                console.log(memoryLocation)
+            }
+            document.getElementById("calculation").value = memoryPieces[memoryLocation]
+            handleButtons()
+        }
 
-        // B-krav:
-
-        // A-krav:
-
+        // A & B-krav:
+        function handleButtons() {
+            let previous = document.getElementById("memory-browseback")
+            let next = document.getElementById("memory-browseforward")
+            const totalMemory = memoryPieces.length - 1
+            if (memoryLocation < totalMemory) {
+                next.disabled = false
+            } else {
+                next.disabled = true
+            }
+            if (memoryLocation > 0 || totalMemory === 0) {
+                previous.disabled = false
+            } else {
+                previous.disabled = true
+            }
+        }
+        
     </script>
 </body>
 </html>

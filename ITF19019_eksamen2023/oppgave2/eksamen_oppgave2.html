@@ -19,6 +19,9 @@
                 <li>Circles: <span id="circleCount">0</span></li>
                 <li>Total: <span id="totalCount">0</span></li>
             </ul>
+            <h2>Activity</h2>
+            <!-- A-krav: -->
+            <p>User has been active for <span id ="runTime">0</span> seconds, which is <span id ="avarageElement">0</span> elements per second</p>
         </nav>
         <canvas id="drawArea"></canvas>
     </main>
@@ -31,37 +34,137 @@
         canvas.height = 500
         const ctx = canvas.getContext("2d")
 
-        //TODO: Storage of multiple element objects (Grade C and above)
-        const elements = [
-            {type: "square", x: 23, y: 220},
-            {type: "circle", x: 381, y: 444}
-        ]
+        // E-krav
+        //Function to draw a square
+        function drawSquare(x, y) {
+            ctx.fillStyle = "blue"
+            ctx.fillRect (x, y, 8, 8)
+        }
+        //Function to draw a circle
+        function drawCircle(x, y) {
+            ctx.fillStyle = "gold"
+            ctx.beginPath()
+            ctx.arc(x, y, 13, 0, 2 * Math.PI)
+            ctx.fill()
+        }
 
+        // C-krav
+        function randomMinMax(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
         //TODO: Function to add an element of parameter type 'square' or 'circle':
-        
-
-        //TODO: Function to remove random element:
-        
-
-        //TODO: EventListeners to track user input:
-
+        function makeElement(type) {
+            const x = randomMinMax(0, canvas.width)
+            const y = randomMinMax(0, canvas.height)
+            elements.push({type: type, x: x, y: y})
+            if (type == "square") {
+                elementCount[0]++
+            } else if (type == "circle") {
+                elementCount[1]++
+            }
+            elementCount[2]++
+            timeActivity++
+            printCount()
+        }
 
         //TODO: Count the element types and total and print to interface
+        function printCount() {
+            document.getElementById("squareCount").innerHTML = elementCount[0]
+            document.getElementById("circleCount").innerHTML = elementCount[1]
+            document.getElementById("totalCount").innerHTML = elementCount[2]
+        }
 
-        
+        //TODO: Storage of multiple element objects (Grade C and above)
+        let elements = [
+        /*  {type: "square", x: 23, y: 220},
+            {type: "circle", x: 381, y: 444}
+        */]
+
+        // C-krav
+        let elementCount = [
+            0,0,0
+        ]
+
+        // A-krav:
+        let timePassed = 0
+        let timeActivity = 0
+
+        //TODO: Function to remove random element:
+        //B-krav
+        function removeElement() {
+            if (elementCount[2] > 0) {
+                const randomIndex = randomMinMax(0, elements.length - 1)
+                if (elements[randomIndex].type == "square") {
+                    elementCount[0]--
+                } else if (elements[randomIndex].type == "circle") {
+                    elementCount[1]--
+                }
+                // A-krav
+                elements.splice(randomIndex, 1)
+                elementCount[2]--
+                timeActivity--
+                printCount()
+            }
+        }
+
         //Function to draw on canvas:
         function renderDrawings() {
             //Clear the rectangle
             ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+            //E-krav
             //TODO: Draw the elements on canvas:
-
+            elements.map(element => {
+                if (element.type == "square") {
+                    drawSquare(element.x, element.y)
+                } else if (element.type == "circle") {
+                    drawCircle(element.x, element.y)
+                }
+            })
 
             //Testprint:
             console.log("Currently drawing frames...")
             //Use requestAnimationFrame to re-run renderDrawings-function
             requestAnimationFrame(renderDrawings)
         }
+
+        // A-krav:
+        // Kilde: https://github.com/toremake/innfprog/tree/main/workshops/workshop5 
+        setInterval(function() {
+            timePassed++
+            document.getElementById("runTime").innerHTML = timePassed
+            document.getElementById("avarageElement").innerHTML = timeActivity / timePassed
+            timeActivity--
+        }, 1000)
+
+
+
+        //TODO: EventListeners to track user input:
+        // D-krav
+        document.addEventListener("keydown", function(event) {
+            if (event.key == "s") {
+                makeElement("square")
+            } else if (event.key == "c") {
+                makeElement("circle")
+            } else if (event.key == "r") {
+                removeElement()
+            }
+        })
+
+        // E-krav
+        document.getElementById("cbutton").addEventListener("click", function(event) {
+            makeElement("circle")
+        })
+
+        document.getElementById("sbutton").addEventListener("click", function(event) {
+            makeElement("square")
+        })
+
+        // B-krav
+        document.getElementById("rbutton").addEventListener("click", function(event) {
+            removeElement()
+        })
+
         //Start drawing
         renderDrawings()
     </script>
