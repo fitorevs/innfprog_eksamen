@@ -43,21 +43,55 @@
     </article>
 
     <script>
-        function displey(val) {
-            document.getElementByID("calculatin").value += val
+        //Rettet: displey -> display
+        function display(val) {
+            //Rettet: getElementByID -> getElementById
+            //Rettet: calculatin -> calculation
+            document.getElementById("calculation").value += val
             return val
         }
 
         function solve() {
-            let calculation = document.getElementById("calculation").value()
+            //Rettet: value() -> value
+            let calculation = document.getElementById("calculation").value
             let result = eval(calculation)
-            document.getElementById("calculation").value = results
+            //Rettet: results -> result
+            document.getElementById("calculation").value = result
             return result
         }
+
+        /* E-krav: Kommentar til kode:
+            Denne koden er en bit med JavaScript som heter solve(). 
+            Denne biten gjør en kalkulering basert på det som er skrevet inn i et inputfelt med id-en "calculation".
+            1. I denne funksjonen hentes verdien fra input-elementet med ID "calculation" 
+                ved hjelp `document.getElementById("calculation".value`. På denne måten hentes 
+                det matematiske uttryket fra input-feltet
+            2. For å evalurere det matematiske uttryket og lagre resultatet bruker vi funksjonen `eval()`. 
+                Deretter blir resultatet lagret i variabelen `result`
+            3. I linje nr. 3 i koden, blir svaret oppdatert i input-feltet som har ID-en "calculation ved å
+                sette verdien til resultatet av evalureringen (document.getElementById("calculation").value = result).
+            Til slutt gir funksjonen tilbake det som er regnet ut.*/
+
 
         function clearScreen() {
             document.getElementById("calculation").value = ""
         }
+
+        // D-krav: 
+        function addMemory() {
+            let calculation = document.getElementById("calculation").value
+            memoryPieces.push(calculation)
+            memoryBank++
+            document.getElementById("memory-bank").textContent = memoryBank
+            console.log(memoryPieces)
+        }
+
+        // C-krav:
+
+        // B-krav:
+
+        // A-krav:
+
     </script>
 </body>
 </html>
