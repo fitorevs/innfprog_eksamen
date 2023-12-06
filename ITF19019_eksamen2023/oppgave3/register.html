@@ -101,8 +101,7 @@
             /* Kommentar: I denne funksjonen skriver ut ansattlisten på nettsiden ut ved å bruke informasjonen i html-koden.
                           Vi henter elementet med ID "staffList" og lagrer det i en variabel. Deretter tømmes innholdet i elementet.
                           Deretter brukes map til å gå gjennom alle elementene i arrayet "staff". For hvert element i arrayet, lages det et nytt html-element. 
-                          Til slutt settes innerHTML til article-elementet med informasjonen om ansattmedlemmet
-            */
+                          Til slutt settes innerHTML til article-elementet med informasjonen om ansattmedlemmet. */
 
             function newStaff() {
                 const idsToFetch = ["firstname", "lastname", "position", "department", "email"]
@@ -139,7 +138,8 @@
                     menu.appendChild(html)
                 })
             }
-            // Kommentar: I denne funksjonen tar inn et array og en id. Deretter lager den en variabel som henter ut elementet med den gitte id-en.
+            /* Kommentar: Denne funksjonen tar inn et array og en id til HTML-elementet (menyen).
+                          Den tømmer først innholdet i menyen og legger deretter til hvert element i arrayet som et nytt valg i menyen. */
 
             printArray(positions, "position")
             printArray(departments, "department")

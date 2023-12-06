@@ -41,7 +41,7 @@
             ctx.fillStyle = "blue"
             ctx.fillRect (x, y, 8, 8)
         }
-        //Denne funksjonen tegner en firkant på canvas.
+        // Kommentar: Denne funksjonen tegner en firkant på canvas.
         
         function drawCircle(x, y) {
             ctx.fillStyle = "gold"
@@ -49,7 +49,7 @@
             ctx.arc(x, y, 13, 0, 2 * Math.PI)
             ctx.fill()
         }
-        //Denne funksjonen tegner en sirkel på canvas.
+        // Kommentar: Denne funksjonen tegner en sirkel på canvas.
 
         // C-krav
         function randomMinMax(min, max) {
@@ -79,22 +79,25 @@
 
         //TODO: Storage of multiple element objects (Grade C and above)
         let elements = [
-            {type: "square", x: 23, y: 220},
-            {type: "circle", x: 381, y: 444}
-       ]
+            /*{type: "square", x: 23, y: 220},
+            {type: "circle", x: 381, y: 444}*/
+        ]
+        // Kommentar: Her har jeg kommentert ut slik at det ikke blir lagt til elementer automatisk når siden lastes inn. Dette blir også riktig ifht. når elementer blir fjernet.
 
-        // C-krav
+
+        // C-krav:
         let elementCount = [0, 0, 0]
-        //Kommentar: denne variabelen holder styr på antall elementer av typen "square", "circle" og totalt antall elementer (firkant + sirkel).
+        // Kommentar: Denne variabelen holder styr på antall elementer av typen "square", "circle" og totalt antall elementer (firkant + sirkel).
 
         // A-krav:
         let timePassed = 0
         let timeActivity = 0
-        /* Kommentar: disse variablene holder styr på den totale tiden som har gått og regner ut 
+        /* Kommentar: Disse variablene holder styr på den totale tiden som har gått og regner ut 
                      hvor mange elementer som har blitt lagt til eller fjernet per sekund. */
 
         //TODO: Function to remove random element:
-        // B-krav
+        // Kilde: https://lms.webtricks.blog/kurs/innforing-i-programmering/10-canvas-animasjon/randomisering-tilfeldig-utvalg-verdi
+        // B-krav:
         function removeElement() {
             if (elementCount[2] > 0) {
                 const randomIndex = randomMinMax(0, elements.length - 1)
@@ -119,7 +122,8 @@
             //Clear the rectangle
             ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-            // E-krav
+            // E-krav:
+            // Kilde: https://lms.webtricks.blog/kurs/innforing-i-programmering/arrayer-og-objekter/map-og-filter
             //TODO: Draw the elements on canvas:
             elements.map(element => {
                 if (element.type == "square") {
@@ -138,7 +142,7 @@
             requestAnimationFrame(renderDrawings)
         }
 
-        // A-krav
+        // A-krav:
         // Kilde: https://github.com/toremake/innfprog/tree/main/workshops/workshop5 
         setInterval(function() {
             timePassed++
@@ -154,7 +158,8 @@
 
 
         //TODO: EventListeners to track user input:
-        // D-krav
+        // D-krav:
+        // Kilde: https://lms.webtricks.blog/kurs/innforing-i-programmering/8-brukerinput/tastaturinput 
         document.addEventListener("keydown", function (event) {
             if (event.key == "s") {
                 makeElement("square")
@@ -170,24 +175,24 @@
                      Når 'r' blir trykket, fjernes et tilfeldig element.*/
 
         
-        // E-krav
-        //Lytter etter klikk på knappene med ID-ene "sbutton", "cbutton" og "rbutton".
-
-        //Funksjon som legger til et element av typen "circle" når brukeren trykker på knappen med ID "cbutton"
+        // E-krav:
+        // Kilde: https://lms.webtricks.blog/kurs/innforing-i-programmering/8-brukerinput/knappetrykk 
+        // Lytter etter klikk på knappene med ID-ene "sbutton", "cbutton" og "rbutton".
         document.getElementById("cbutton").addEventListener("click", function (event) {
             makeElement("circle")
         })
+        // Kommentar: Funksjon som legger til et element av typen "circle" når brukeren trykker på knappen med ID "cbutton"
 
-        //Funksjon som legger til et element av typen "square" når brukeren trykker på knappen med ID "sbutton"
         document.getElementById("sbutton").addEventListener("click", function (event) {
             makeElement("square")
         })
+        // Kommentar: Funksjon som legger til et element av typen "square" når brukeren trykker på knappen med ID "sbutton"
 
-        // B-krav
-        //Funksjon som fjerner et tilfeldig element når brukeren trykker på knappen med ID "rbutton" 
+        // B-krav:
         document.getElementById("rbutton").addEventListener("click", function (event) {
             removeElement()
         })
+        // Kommentar: Funksjon som fjerner et tilfeldig element når brukeren trykker på knappen med ID "rbutton" 
 
         //Start drawing
         renderDrawings()
