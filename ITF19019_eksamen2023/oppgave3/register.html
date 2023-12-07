@@ -74,12 +74,6 @@
             {firstname: "Armando", lastname: "Murillo", position: "Designer", department: "Production", email: "armando@allthings.net"},
             {firstname: "Howe-Lukic", lastname: "Brigitte", position: "Designer", department: "Human Resources", email: "armando@allthings.net"}
         ]
-
-        //Array of available positions
-        let positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"].sort()
-
-        //Array of available departments
-        let departments = ["Administration", "Human Resources", "Production", "Finances"].sort()
     
         // E-krav:
         // Kilde: Fått hjelp av Nikolai Lysebraate, student ved HiOF, 1.året Informasjonssystemer til å forstå utførelsen av oppgaven -->
@@ -107,7 +101,7 @@
                           Deretter brukes map til å gå gjennom alle elementene i arrayet "staff". For hvert element i arrayet, lages det et nytt html-element. 
                           Til slutt settes innerHTML til article-elementet med informasjonen om ansattmedlemmet. */
 
-            function newStaff() {
+            function newStaff() { 
                 const idsToFetch = ["firstname", "lastname", "position", "department", "email"]
                 let goAhead = true
                 idsToFetch.map(id => {
@@ -165,6 +159,12 @@
                 } 
             }
             // Kommentar: Disse funksjonene legger til nye avdelinger og stillinger i arrayene "departments" og "positions" og skriver dem ut i menyene. De er sortert i alfabetisk rekkefølge.
+
+            //Array of available positions
+            let positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"].sort() // D-krav: Sorterer stillingene alfabetisk
+
+            //Array of available departments
+            let departments = ["Administration", "Human Resources", "Production", "Finances"].sort() // D-krav: Sorterer avdelingene alfabetisk
 
             printArray(positions, "positionFilter") // Kaller på funksjonen for å skrive ut "positions" i menyen med id-en "positionFilter"
             printArray(positions, "position") // Kaller på funksjonen for å skrive ut "positions" i menyen med id-en "position"
