@@ -49,21 +49,21 @@
                     <label for="email">Email address</label><input type="email" name="email" id="email" placeholder="you@email.com" /></select>
                 </p>
                 <!-- Lagt til onClick -->
-                <button id="saveStaff" onclick="newStaff()">Save staff member</button>
+                <button id="saveStaff" onClick="newStaff()">Save staff member</button>
             </div>
             <div class="form">
                 <h2>Add position</h2>
                 <p>
                     <label for="newPosition">Position</label><input type="text" name="newPosition" id="newPosition" placeholder="Position" />
                 </p>
-                <button id="savePosition" onclick="newPosition()">Save new position</button>
+                <button id="savePosition" onClick="newPosition()">Save new position</button>
             </div>
             <div class="form">
                 <h2>Add department</h2>
                 <p>
                     <label for="newDepartment">Department</label><input type="text" name="newDepartment" id="newDepartment" placeholder="Department" />
                 </p>
-                <button id="saveDepartment" onclick="newDepartment()">Save new department</button>
+                <button id="saveDepartment" onClick="newDepartment()">Save new department</button>
             </div>
         </section>
     </main>
@@ -83,21 +83,23 @@
 
         // E-krav:
         // Kilde: Fått hjelp av Nikolai Lysebraate, student ved HiOF, 1.året Informasjonssystemer til å forstå utførelsen av oppgaven -->
+        // Kilde: https://www.w3schools.com/js/js_array_sort.asp, https://www.w3schools.com/jsref/jsref_localecompare.asp
         function printStaff() {
             let staffList = document.getElementById("staffList")
             staffList.textContent = ""
-            staff.map((staffMember, index) => {
-                let html = document.createElement("article")
-                html.classList.add("membercard")
-                html.setAttribute("id", "staffmember-" + index)
-                html.innerHTML = "<h3>" + staffMember.lastname + ", " + staffMember.firstname + "</h3>" 
-                html.innerHTML += "<p class = metainfo>"
-                html.innerHTML += " <img src='posicon.png' alt='position: '> " + staffMember.position
-                html.innerHTML += " <img src='depicon.png' alt='department: '> " + staffMember.department
-                html.innerHTML += "</p><p><a href='mailto:"+ staffMember.email +"'><img src='mailicon.png'> Send mail to "+ staffMember.firstname +"</a></p>"
-                console.log(html)
-                staffList.appendChild(html)
-            })
+                staff.sort((a, b) => a.lastname.localeCompare(b.lastname))
+                staff.map((staffMember, index) => {
+                    let html = document.createElement("article")
+                    html.classList.add("membercard")
+                    html.setAttribute("id", "staffmember-" + index)
+                    html.innerHTML = "<h3>" + staffMember.lastname + ", " + staffMember.firstname + "</h3>" // C-krav: Ansattvisningen sorteres etter etternavn
+                    html.innerHTML += "<p class = metainfo>"
+                    html.innerHTML += " <img src='posicon.png' alt='position: '> " + staffMember.position
+                    html.innerHTML += " <img src='depicon.png' alt='department: '> " + staffMember.department
+                    html.innerHTML += "</p><p><a href='mailto:"+ staffMember.email +"'><img src='mailicon.png'> Send mail to "+ staffMember.firstname +"</a></p>"
+                    console.log(html)
+                    staffList.appendChild(html)
+                })
         }
             printStaff()
             /* Kommentar: I denne funksjonen skriver ut ansattlisten på nettsiden ut ved å bruke informasjonen i html-koden.
@@ -131,7 +133,7 @@
                           Dersom 'goAhead' er 'true', legges en ny ansatt i arrayet ('staff').
                           */
 
-            function printArray(array, id) {
+            function printArray(array, id) { 
                 let menu = document.getElementById(id)
                 menu.textContent = ""
                 array.map(element => {
@@ -164,9 +166,9 @@
             }
             // Kommentar: Disse funksjonene legger til nye avdelinger og stillinger i arrayene "departments" og "positions" og skriver dem ut i menyene. De er sortert i alfabetisk rekkefølge.
 
-            printArray(positions, "position")
-            printArray(departments, "department")
-            // Kommentar: kaller på funksjonen for å skrive ut "positions" og "departments" i menyene med id-ene "position" og "department"
+            printArray(positions, "positionFilter") // Kaller på funksjonen for å skrive ut "positions" i menyen med id-en "positionFilter"
+            printArray(positions, "position") // Kaller på funksjonen for å skrive ut "positions" i menyen med id-en "position"
+            printArray(departments, "department")  // Kaller på funksjonen for å skrive ut "departments" i menyen med id-en "department"
     </script>
 </body>
 </html>
