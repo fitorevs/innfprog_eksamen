@@ -56,14 +56,14 @@
                 <p>
                     <label for="newPosition">Position</label><input type="text" name="newPosition" id="newPosition" placeholder="Position" />
                 </p>
-                <button id="savePosition" onClick="newPosition()">Save new position</button>
+                <button id="savePosition" onclick="newPosition()">Save new position</button>
             </div>
             <div class="form">
                 <h2>Add department</h2>
                 <p>
                     <label for="newDepartment">Department</label><input type="text" name="newDepartment" id="newDepartment" placeholder="Department" />
                 </p>
-                <button id="saveDepartment">Save new department</button>
+                <button id="saveDepartment" onclick="newDepartment()">Save new department</button>
             </div>
         </section>
     </main>
@@ -76,10 +76,10 @@
         ]
 
         //Array of available positions
-        let positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"]
+        let positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"].sort()
 
         //Array of available departments
-        let departments = ["Administration", "Human Resources", "Production", "Finances"]
+        let departments = ["Administration", "Human Resources", "Production", "Finances"].sort()
 
         // E-krav:
         // Kilde: Fått hjelp av Nikolai Lysebraate, student ved HiOF, 1.året Informasjonssystemer til å forstå utførelsen av oppgaven -->
@@ -97,7 +97,8 @@
                 html.innerHTML += "</p><p><a href='mailto:"+ staffMember.email +"'><img src='mailicon.png'> Send mail to "+ staffMember.firstname +"</a></p>"
                 console.log(html)
                 staffList.appendChild(html)
-            })}
+            })
+        }
             printStaff()
             /* Kommentar: I denne funksjonen skriver ut ansattlisten på nettsiden ut ved å bruke informasjonen i html-koden.
                           Vi henter elementet med ID "staffList" og lagrer det i en variabel. Deretter tømmes innholdet i elementet.
@@ -136,19 +137,36 @@
                 array.map(element => {
                     let html = document.createElement("option")
                     html.appendChild(document.createTextNode(element))
-                    menu.appendChild(html)
+                    menu.appendChild(html) 
                 })
             }
             /* Kommentar: Denne funksjonen tar inn et array og en id til HTML-elementet (menyen).
                           Den tømmer først innholdet i menyen og legger deretter til hvert element i arrayet som et nytt valg i menyen. */
             
-    
+            // D-krav:
+            function newDepartment () {
+                let value = document.getElementById("newDepartment").value
+                if (value !== "") {
+                    departments.push(value)
+                    departments = departments.sort()
+                    printArray(departments, "department")
+                } 
+            }
+
+            // C-krav:
+            function newPosition () {
+                let value = document.getElementById("newPosition").value // Henter verdien fra input-feltet med id-en "newPosition"
+                if (value !== "") { // Sjekker om input-feltet er tomt
+                    positions.push(value) // Legger til den nye stillingen i arrayet "positions"
+                    positions = positions.sort() // Sorterer arrayet alfabetisk
+                    printArray(positions, "position") // Kaller på funksjonen for å skrive ut "positions" i menyen med id-en "position"
+                } 
+            }
+            // Kommentar: Disse funksjonene legger til nye avdelinger og stillinger i arrayene "departments" og "positions" og skriver dem ut i menyene. De er sortert i alfabetisk rekkefølge.
+
             printArray(positions, "position")
             printArray(departments, "department")
             // Kommentar: kaller på funksjonen for å skrive ut "positions" og "departments" i menyene med id-ene "position" og "department"
-
-
-
     </script>
 </body>
 </html>
