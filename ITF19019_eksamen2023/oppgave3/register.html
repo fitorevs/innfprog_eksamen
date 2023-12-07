@@ -87,8 +87,8 @@
         function printStaff() {
             let staffList = document.getElementById("staffList")
             staffList.textContent = ""
-                staff.sort((a, b) => a.lastname.localeCompare(b.lastname))
-                staff.map((staffMember, index) => {
+                staff.sort((a, b) => a.lastname.localeCompare(b.lastname)) // Sorterer ansattlisten alfabetisk etter etternavn
+                staff.map((staffMember, index) => { // Går gjennom alle elementene i arrayet "staff"
                     let html = document.createElement("article")
                     html.classList.add("membercard")
                     html.setAttribute("id", "staffmember-" + index)
