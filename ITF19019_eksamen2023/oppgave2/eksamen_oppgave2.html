@@ -44,39 +44,39 @@
         }
         // Kommentar: Denne funksjonen tegner en firkant på canvas.
         
-        function drawCircle(x, y) {
-            ctx.fillStyle = "gold"
-            ctx.beginPath()
-            ctx.arc(x, y, 13, 0, 2 * Math.PI)
-            ctx.fill()
+        function drawCircle(x, y) { // Denne funksjonen tar inn to parametere, x og y.
+            ctx.fillStyle = "gold" // Denne funksjonen setter fargen på sirkelen.
+            ctx.beginPath() // Denne funksjonen starter en ny figur.
+            ctx.arc(x, y, 13, 0, 2 * Math.PI) // NB! I oppgaven står det at radiusen skal være 13px, men i videoen er den tydelig mindre. 
+            ctx.fill() // Denne funksjonen fyller sirkelen med fargen som er satt i fillStyle.
         }
         // Kommentar: Denne funksjonen tegner en sirkel på canvas.
 
         // C-krav
-        // Kilde: https://www.w3schools.com/js/js_random.asp
+        // Kilde: https://github.com/toremake/innfprog/blob/main/workshops/workshop5/ws5_solution.html
         function randomMinMax(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min)
         }
         //TODO: Function to add an element of parameter type 'square' or 'circle':
-        function makeElement(type) {
-            const x = randomMinMax(0, canvas.width)
-            const y = randomMinMax(0, canvas.height)
-            elements.push({type: type, x: x, y: y})
-            if (type == "square") {
-                elementCount[0]++
-            } else if (type == "circle") {
-                elementCount[1]++
+        function makeElement(type) { // Denne funksjonen tar inn en parameter, type.
+            const x = randomMinMax(0, canvas.width) // Denne funksjonen genererer et tilfeldig tall mellom 0 og canvas.width.
+            const y = randomMinMax(0, canvas.height) // Denne funksjonen genererer et tilfeldig tall mellom 0 og canvas.height.
+            elements.push({type: type, x: x, y: y}) // Denne funksjonen legger til et element i arrayet "elements".
+            if (type == "square") { // Hvis parameteren type er "square", økes elementtelleren for firkant med 1.
+                elementCount[0]++ // Denne funksjonen øker elementtelleren for firkant med 1.
+            } else if (type == "circle") { // Hvis parameteren type er "circle", økes elementtelleren for sirkel med 1.
+                elementCount[1]++ // Denne funksjonen øker elementtelleren for sirkel med 1.
             }
-            elementCount[2]++
-            timeActivity++
-            printCount()
+            elementCount[2]++ // Denne funksjonen øker totalt antall elementer med 1.
+            timeActivity++ // Denne funksjonen øker aktivitetstiden med 1.
+            printCount() // Denne funksjonen printer ut antall elementer på siden.
         }
 
         //TODO: Count the element types and total and print to interface
         function printCount() {
-            document.getElementById("squareCount").innerHTML = elementCount[0]
-            document.getElementById("circleCount").innerHTML = elementCount[1]
-            document.getElementById("totalCount").innerHTML = elementCount[2]
+            document.getElementById("squareCount").innerHTML = elementCount[0] // Denne funksjonen printer ut antall firkanter på siden.
+            document.getElementById("circleCount").innerHTML = elementCount[1] // Denne funksjonen printer ut antall sirkler på siden.
+            document.getElementById("totalCount").innerHTML = elementCount[2] // Denne funksjonen printer ut totalt antall elementer på siden.
         }
 
         //TODO: Storage of multiple element objects (Grade C and above)
@@ -145,7 +145,7 @@
         }
 
         // A-krav:
-        // Kilde: https://github.com/toremake/innfprog/tree/main/workshops/workshop5 
+        // Kilde: https://github.com/toremake/innfprog/blob/main/workshops/workshop5/ws5_solution.html
         setInterval(function() {
             timePassed++
             document.getElementById("runTime").innerHTML = timePassed

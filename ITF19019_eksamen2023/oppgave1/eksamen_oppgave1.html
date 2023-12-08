@@ -93,11 +93,11 @@
                       oppdaterer minnelokasjone og viser denne informasjonen på brukergrensesnittet. */
         // C-krav:
         function handleMemory(direction) {
-            const totalMemory = memoryPieces.length - 1
+            const totalMemory = memoryPieces.length - 1 
             if (direction === "next" && memoryLocation < totalMemory) {
                 memoryLocation++
                 console.log(memoryLocation)
-            } else if (direction === "previous" && memoryLocation > 0) {
+            } else if (direction === "previous" && memoryLocation > 0) { 
                 memoryLocation--
                 console.log(memoryLocation)
             }
@@ -126,7 +126,6 @@
         /* Kommentar: Denne funksjonen håndterer knappene for å bla gjennom minnet i kalkulatoren. 
                       Dersom det er mulig å bla til neste eller forrige element i minnet, blir knappene aktivert. 
                       Dersom det ikke er mulig å bla til neste eller forrige element i minnet, blir knappene deaktivert. */
-
     </script>
 </body>
 </html>
