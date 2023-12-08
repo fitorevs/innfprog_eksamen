@@ -142,17 +142,17 @@
                           Den tømmer så innholdet i menyen og legger deretter til hvert element i arrayet som et nytt valg i menyen. */
             
             // D-krav:
-            function newDepartment () {
-                let value = document.getElementById("newDepartment").value
-                if (value !== "") {
-                    departments.push(value)
-                    departments = departments.sort()
-                    printArray(departments, "department")
+            function newDepartment () { // Funksjonen for å legge til ny avdeling
+                let value = document.getElementById("newDepartment").value // Henter verdien fra input-feltet med id-en "newDepartment"
+                if (value !== "") { // Sjekker om input-feltet er tomt
+                    departments.push(value) // Legger til den nye avdelingen i arrayet "departments"
+                    departments = departments.sort() // Sorterer arrayet alfabetisk
+                    printArray(departments, "department") // Kaller på funksjonen for å skrive ut "departments" i menyen med id-en "department"
                 } 
             }
 
             // C-krav:
-            function newPosition () {
+            function newPosition () { // Funksjonen for å legge til ny stilling
                 let value = document.getElementById("newPosition").value // Henter verdien fra input-feltet med id-en "newPosition"
                 if (value !== "") { // Sjekker om input-feltet er tomt
                     positions.push(value) // Legger til den nye stillingen i arrayet "positions"

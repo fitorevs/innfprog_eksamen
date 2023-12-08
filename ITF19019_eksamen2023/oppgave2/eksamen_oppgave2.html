@@ -100,19 +100,19 @@
         //TODO: Function to remove random element:
         // Kilde: https://lms.webtricks.blog/kurs/innforing-i-programmering/10-canvas-animasjon/randomisering-tilfeldig-utvalg-verdi
         // B-krav:
-        function removeElement() {
-            if (elementCount[2] > 0) {
-                const randomIndex = randomMinMax(0, elements.length - 1)
-                if (elements[randomIndex].type == "square") {
-                    elementCount[0]--
-                } else if (elements[randomIndex].type == "circle") {
-                    elementCount[1]--
+        function removeElement() { // Denne funksjonen fjerner et tilfeldig element.
+            if (elementCount[2] > 0) { // Hvis det er elementer på siden, kjøres koden under.
+                const randomIndex = randomMinMax(0, elements.length - 1) // Denne funksjonen genererer et tilfeldig tall mellom 0 og lengden på arrayet "elements".
+                if (elements[randomIndex].type == "square") { // Hvis elementet som fjernes er av typen "square", reduseres elementtelleren for firkant med 1.
+                    elementCount[0]-- // Denne funksjonen reduserer elementtelleren for firkant med 1.
+                } else if (elements[randomIndex].type == "circle") { // Hvis elementet som fjernes er av typen "circle", reduseres elementtelleren for sirkel med 1.
+                    elementCount[1]-- // Denne funksjonen reduserer elementtelleren for sirkel med 1.
                 }
                 // A-krav
-                elements.splice(randomIndex, 1)
-                elementCount[2]--
-                timeActivity--
-                printCount()
+                elements.splice(randomIndex, 1) // Denne funksjonen fjerner et tilfeldig element fra arrayet "elements".
+                elementCount[2]-- // Denne funksjonen reduserer totalt antall elementer med 1.
+                timeActivity-- // Denne funksjonen reduserer aktivitetstiden med 1.
+                printCount() // Denne funksjonen printer ut antall elementer på siden.
             }
         }
         /* Kommentar: I denne koden har jeg brukt splice til å fjerne et tilfeldig element fra arrayet "elements".
