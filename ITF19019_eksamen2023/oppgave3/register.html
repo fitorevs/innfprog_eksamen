@@ -78,7 +78,7 @@
     
         // E-krav:
         // Kilde: Fått hjelp av Nikolai Lysebraate, student ved HiOF, 1.året Informasjonssystemer til å forstå utførelsen av oppgaven -->
-        // Kilde: https://www.w3schools.com/js/js_array_sort.asp, https://www.w3schools.com/jsref/jsref_localecompare.asp
+        // Kilder: https://www.w3schools.com/js/js_array_sort.asp, https://www.w3schools.com/jsref/jsref_localecompare.asp, https://wfernandoaugusto01.medium.com/sorting-data-alphabetically-localecompare-sort-e3d314708f8c 
         function printStaff() {
             let staffList = document.getElementById("staffList")
             staffList.textContent = ""
@@ -87,7 +87,7 @@
                     let html = document.createElement("article")
                     html.classList.add("membercard")
                     html.setAttribute("id", "staffmember-" + index)
-                    html.innerHTML = "<h3>" + staffMember.lastname + ", " + staffMember.firstname + "</h3>" // C-krav: Ansattvisningen sorteres etter etternavn
+                    html.innerHTML = "<h3>" + staffMember.lastname + ", " + staffMember.firstname + "</h3>" // Ansattvisningen viser etternavn først
                     html.innerHTML += "<p class = metainfo>"
                     html.innerHTML += " <img src='posicon.png' alt='position: '> " + staffMember.position
                     html.innerHTML += " <img src='depicon.png' alt='department: '> " + staffMember.department
@@ -128,17 +128,18 @@
                           Dersom 'goAhead' er 'true', legges en ny ansatt i arrayet ('staff').
                           */
 
+            // Kilder: https://www.w3schools.com/jsref/met_document_createelement.asp, https://www.w3schools.com/jsref/met_node_appendchild.asp
             function printArray(array, id) { 
-                let menu = document.getElementById(id)
-                menu.textContent = ""
-                array.map(element => {
-                    let html = document.createElement("option")
-                    html.appendChild(document.createTextNode(element))
-                    menu.appendChild(html) 
+                let node = document.getElementById(id) 
+                node.textContent = "" 
+                array.map(element => { 
+                    let html = document.createElement("option") 
+                    html.appendChild(document.createTextNode(element)) 
+                    node.appendChild(html) 
                 })
             }
-            /* Kommentar: Denne funksjonen tar inn et array og en id til HTML-elementet (menyen).
-                          Den tømmer først innholdet i menyen og legger deretter til hvert element i arrayet som et nytt valg i menyen. */
+            /* Kommentar: Denne funksjonen tar inn et array og en id til HTML-elementet (menyen). Deretter hentes HTML-elementet med id-en som ble sendt inn i funksjonen.
+                          Den tømmer så innholdet i menyen og legger deretter til hvert element i arrayet som et nytt valg i menyen. */
             
             // D-krav:
             function newDepartment () {
@@ -162,10 +163,10 @@
             // Kommentar: Disse funksjonene legger til nye avdelinger og stillinger i arrayene "departments" og "positions" og skriver dem ut i menyene. De er sortert i alfabetisk rekkefølge.
 
             //Array of available positions
-            let positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"].sort() // D-krav: Sorterer stillingene alfabetisk
+            let positions = ["Director", "Team leader", "Producer", "Engineer", "Designer"].sort() // Sorterer stillingene alfabetisk
 
             //Array of available departments
-            let departments = ["Administration", "Human Resources", "Production", "Finances"].sort() // D-krav: Sorterer avdelingene alfabetisk
+            let departments = ["Administration", "Human Resources", "Production", "Finances"].sort() // Sorterer avdelingene alfabetisk
 
             printArray(positions, "positionFilter") // Kaller på funksjonen for å skrive ut "positions" i menyen med id-en "positionFilter"
             printArray(positions, "position") // Kaller på funksjonen for å skrive ut "positions" i menyen med id-en "position"
